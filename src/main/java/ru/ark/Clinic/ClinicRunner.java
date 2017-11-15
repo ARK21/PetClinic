@@ -66,7 +66,7 @@ public class ClinicRunner{
     private static void addClientMenu(){
         System.out.println("Enter new client name");
         String clientName = scanner.next();
-        System.out.println("Enter  your pet (dog/cat)");
+        System.out.println("Enter  your pet (dog/cat/parrot)");
         String pet = scanner.next();
         System.out.println(" and pet's name");
         String petName = scanner.next();
@@ -74,6 +74,8 @@ public class ClinicRunner{
             clinic.addClient(clinic.getClients().length, new Client(clientName, new Cat(petName)));
         } else if (pet.equalsIgnoreCase("dog")) {
             clinic.addClient(clinic.getClients().length, new Client(clientName, new Dog(petName)));
+        } else if (pet.equalsIgnoreCase("parrot")) {
+            clinic.addClient(clinic.getClients().length, new Client(clientName, new Parrot(petName)));
         }
         System.out.println("Клиент " + clientName + " добавлен. Питомец - " + pet + " " + petName );
     }

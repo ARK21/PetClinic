@@ -64,11 +64,11 @@ public class ClinicRunner{
      * Метод добавляющий клиентов
      */
     private static void addClientMenu(){
-        System.out.println("Enter new client name");
+        System.out.println("Enter client name");
         String clientName = scanner.next();
-        System.out.println("Enter  your pet (dog/cat/parrot)");
+        System.out.println("Enter Pet's type: dog, cat or parrot");
         String pet = scanner.next();
-        System.out.println(" and pet's name");
+        System.out.println("Pet's name is");
         String petName = scanner.next();
         if (pet.equalsIgnoreCase("cat")){
             clinic.addClient(clinic.getClients().length, new Client(clientName, new Cat(petName)));
@@ -76,8 +76,7 @@ public class ClinicRunner{
             clinic.addClient(clinic.getClients().length, new Client(clientName, new Dog(petName)));
         } else if (pet.equalsIgnoreCase("parrot")) {
             clinic.addClient(clinic.getClients().length, new Client(clientName, new Parrot(petName)));
-        }
-        System.out.println("Клиент " + clientName + " добавлен. Питомец - " + pet + " " + petName );
+        } else System.out.println("Клиент не был добавлен");
     }
 
     /**
@@ -85,21 +84,38 @@ public class ClinicRunner{
      */
     private static  void removeClientMenu(){
         System.out.println("Enter client position to delete");
-        clinic.removeClient(Integer.valueOf(scanner.next()));
+        try {
+            clinic.removeClient(Integer.valueOf(scanner.next()));
+        } catch (UserException e) {
+            System.out.println(e.getMessage());
+        }
     }
 
     /**
      * Поиск клиента
      */
     private static void findClientMenu() {
-        System.out.println("What do you now? client or pet name?");
-        String clientOrPet = scanner.next();
-        if (clientOrPet.equalsIgnoreCase("client")) {
-            System.out.println("Client name is...");
-            System.out.println(clinic.findClientByName(scanner.next()));
-        } else if (clientOrPet.equalsIgnoreCase("pet")) {
-            System.out.println("Pet name is...");
-            System.out.println(clinic.findClientByPetName(scanner.next()));
+        System.out.println("Searching by:");
+        System.out.println("1. Client name");
+        System.out.println("2. Pet name:");
+        System.out.println("Enter the number");
+        int number = Integer.valueOf(scanner.next()) ;
+        try {
+            switch (number) {
+                case 1:
+                    System.out.println("Client name is...");
+                    System.out.println(clinic.findClientByName(scanner.next()));
+                    break;
+                case 2:
+                    System.out.println("Pet name is...");
+                    System.out.println(clinic.findClientByPetName(scanner.next()));
+                    break;
+                default:
+                    System.out.println("Wrong enter.");
+                    break;
+            }
+        } catch (UserException e) {
+            System.out.println(e.getMessage());
         }
     }
 
@@ -130,15 +146,20 @@ public class ClinicRunner{
         String petType = scanner.next();
         System.out.println("Pet name");
         String petName = scanner.next();
-        if (petType.equalsIgnoreCase("dog")) {
-            clinic.setPet(position, new Dog(petName));
-        } else if (petType.equalsIgnoreCase("cat")) {
-            clinic.setPet(position, new Cat(petName));
-        } else if (petType.equalsIgnoreCase("parrot")) {
-            clinic.setPet(position, new Parrot(petName));
-        } else {
-            System.out.println("Такой тип питомца нельзя использовать. Попробуйте еще раз");
+        try {
+            if (petType.equalsIgnoreCase("dog")) {
+                clinic.setPet(position, new Dog(petName));
+            } else if (petType.equalsIgnoreCase("cat")) {
+                clinic.setPet(position, new Cat(petName));
+            } else if (petType.equalsIgnoreCase("parrot")) {
+                clinic.setPet(position, new Parrot(petName));
+            } else {
+                System.out.println("Такой тип питомца нельзя использовать.");
+            }
+        } catch (UserException e) {
+            System.out.println(e.getMessage());
         }
+
     }
 
     /**

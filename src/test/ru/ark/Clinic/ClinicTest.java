@@ -61,10 +61,6 @@ public class ClinicTest {
     }
 
     @Test
-    public void testIfRemovePetWorksCorrectly() throws Exception {
-    }
-
-    @Test
     public void testIfRemoveClientWorksCorrectly() throws Exception {
         Clinic clinic = new Clinic(1);
         clinic.addClient(0, new Client("Dave", new Cat("Murka")));
@@ -91,4 +87,55 @@ public class ClinicTest {
         Client [] clients = {client};
         assertArrayEquals(clients, clinic.getClients());
     }
+
+
+
+    @Test (expected = UserException.class)
+    public void testIfFindClientByPetNameThrowsUserException() throws UserException {
+        Clinic clinic = new Clinic(1);
+        Client newClient = new Client("Bob", new Dog("Ben"));
+        clinic.addClient(0,newClient);
+        assertEquals(newClient, clinic.findClientByPetName("David"));
+    }
+
+    @Test (expected = UserException.class)
+    public void testIfFindClientByNameThrowsUserException() throws UserException {
+        Clinic clinic = new Clinic(1);
+        Client newClient = new Client("Bob", new Dog("Ben"));
+        clinic.addClient(0,newClient);
+        assertEquals(newClient, clinic.findClientByName("Nina"));
+    }
+
+    @Test (expected = UserException.class)
+    public void testIfSetClientNameThrowsUserException() throws UserException {
+        Clinic clinic = new Clinic(1);
+        clinic.addClient(0,new Client("Bob", new Dog("Ben")));
+        clinic.setClientName(2, "Peter");
+
+    }
+
+    @Test (expected = UserException.class)
+    public void testIfSetPetNameThrowsUserException() throws Exception {
+        Clinic clinic = new Clinic(1);
+        clinic.addClient(0,new Client("Bob", new Dog("Ben")));
+        clinic.setPetName(2,"Lucky");
+
+    }
+
+    @Test (expected = UserException.class)
+    public void testIfSetPetThrowsUserException() throws Exception {
+        Clinic clinic = new Clinic(1);
+        clinic.addClient(0,new Client("Bob", new Dog("Ben")));
+        Cat cat = new Cat("Masha");
+        clinic.setPet(1, cat);
+    }
+
+    @Test (expected = UserException.class)
+    public void testIfRemoveClientThrowsUserException() throws Exception {
+        Clinic clinic = new Clinic(1);
+        clinic.addClient(0, new Client("Dave", new Cat("Murka")));
+        clinic.removeClient(3);
+            }
+
+
 }

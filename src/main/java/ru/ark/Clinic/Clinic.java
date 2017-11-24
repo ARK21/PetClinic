@@ -1,5 +1,7 @@
 package ru.ark.Clinic;
 
+import java.util.ArrayList;
+
 /**
  * Класс описывающий клинику
  */
@@ -8,31 +10,23 @@ public class Clinic {
     /**
      * Поле в котором хранятся все клиенты клиники
      */
-    private Client[] clients;
+    private ArrayList<Client> clients;
 
     /**
      * Конструктор создающий клинику
-     *
-     * @param size входной параметр использующиймя для создания массива клиентов размером size
      */
-    public Clinic(int size) {
-        this.clients = new Client[size];
+    public Clinic() {
+        this.clients = new ArrayList<Client>();
     }
 
     /**
-     * Добавляет клиентов в массив
+     * Добавляет нового клиента
      *
-     * @param position Позиция в массиве для добавления
-     * @param client   ссылка на добавлемого клиента
+     * @param client сам клиент
      */
-    public void addClient(int position, Client client) {
-        if (position == clients.length) {
-            Client[] newArrayClient = new Client[position + 1];
-            System.arraycopy(clients, 0, newArrayClient, 0, clients.length);
-            clients = newArrayClient;
-        }
-        clients[position] = client;
-        System.out.println("Клиент " + client.getName() + " добавлен.");
+    public void addNewClient(Client client) {
+        clients.add(client);
+        System.out.println("Клиент " + client.getName() + " добавлен");
     }
 
     /**
@@ -62,7 +56,6 @@ public class Clinic {
      * @return возвращает найденноо клиента
      * @throws UserException выбрасывает исключение если клиент не найдет
      */
-
     public Client findClientByName(String name) throws UserException {
         Client findingClient = null;
         for (Client client : clients) {
@@ -84,8 +77,8 @@ public class Clinic {
      * @throws UserException Выбрасывает исключение, если указана несуществующая позиция массива.
      */
     public void setClientName(int position, String clientName) throws UserException {
-        if (!(position > clients.length - 1 || position < 0)) {
-            this.clients[position].setName(clientName);
+        if (!(position > clients.size() - 1 || position < 0)) {
+            this.clients.get(position).setName(clientName);
         } else {
             throw new UserException("Такой позиции нет в нашей клинике");
         }
@@ -99,8 +92,8 @@ public class Clinic {
      * @throws UserException Выбрасывает исключение, если указана несуществующая позиция массива.
      */
     public void setPetName(int position, String petName) throws UserException {
-        if (!(position > clients.length - 1 || position < 0)) {
-            this.clients[position].getPet().setName(petName);
+        if (!(position > clients.size() - 1 || position < 0)) {
+            this.clients.get(position).getPet().setName(petName);
         } else throw new UserException("Такого клиента нет в нашей клинике");
     }
 
@@ -108,12 +101,12 @@ public class Clinic {
      * Устанавливает питомца для клиента
      *
      * @param position позиция клиента в массиве для которого нужно установить питомца
-     * @param pet сам питомец
+     * @param pet      сам питомец
      * @throws UserException Выбрасывает исключение, если указана несуществующая позиция массива.
      */
     public void setPet(int position, Pet pet) throws UserException {
-        if (!(position > clients.length - 1 || position < 0)) {
-            this.clients[position].setPet(pet);
+        if (!(position > clients.size() - 1 || position < 0)) {
+            this.clients.get(position).setPet(pet);
             System.out.println("Питомец успешно добавлен");
         } else {
             throw new UserException("Такого клиента нет в нашей клинике.");
@@ -121,29 +114,20 @@ public class Clinic {
     }
 
     /**
-     * удаляет клиента вместе с питомцем
+     * Удаляет клиента из списков клинники
      *
-     * @param position позиция клиента в массиве
-     * @throws UserException Выбрасывает исключение, если указана несуществующая позиция массива.
+     * @param index индекс клиента которого нужно удалить
+     * @throws UserException выбрасывается если некоректный индекс
      */
-    public void removeClient(int position) throws UserException {
-        if (!(position > clients.length - 1 || position < 0)) {
-            Client[] newArrayClients = new Client[clients.length - 1];
-            if (position == 0) {
-                System.arraycopy(clients, 1, newArrayClients, 0, clients.length - 1);
-            } else if (position == clients.length - 1) {
-                System.arraycopy(clients, 0, newArrayClients, 0, clients.length - 1);
-            } else {
-                System.arraycopy(clients, 0, newArrayClients, 0, position);
-                System.arraycopy(clients, position + 1, newArrayClients, position, clients.length - position - 1);
-            }
-            System.out.println("Клиент  - " + clients[position].getName() + " was delete");
-            clients = newArrayClients;
+    public void removeClient(int index) throws UserException {
+        if (index < 0 || clients.size() < index) {
+            throw new UserException("Неподходящий индекс");
         } else {
-            throw new UserException("Такого клиента нет в нашей клинике.");
+            Client client = clients.get(index);
+            clients.remove(index);
+            System.out.println("Клиент " + client.getName() + " был удален");
+            client = null;
         }
-
-
     }
 
     /**
@@ -151,8 +135,8 @@ public class Clinic {
      */
     public String showAllClients() {
         String result = "";
-        for (int a = 0; a < clients.length; a++) {
-            result += (a) + ". " + clients[a].toString() + "\n";
+        for (int a = 0; a < clients.size(); a++) {
+            result += (a) + ". " + clients.get(a).toString() + "\n";
         }
         return result;
     }
@@ -160,9 +144,9 @@ public class Clinic {
     /**
      * Предоставляет доступ к массиву клиентов
      *
-     * @return возвращает сам массив
+     * @return возвращает лист
      */
-    public Client[] getClients() {
+    public ArrayList<Client> getClients() {
         return clients;
     }
 }

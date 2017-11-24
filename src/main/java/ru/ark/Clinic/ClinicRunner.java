@@ -20,12 +20,12 @@ public class ClinicRunner{
      * @param args  параметры при запуске программы
      */
 	public static void main(String [] args){
-	    clinic = new Clinic(5);
-		clinic.addClient(0, new Client("Dave", new Cat("Murka")));
-		clinic.addClient(1, new Client("Sasha", new Dog("Cipher")));
-		clinic.addClient(2, new Client("Tanya", new Cat("Din")));
-		clinic.addClient(3, new Client("Dasha", new Cat("Barsick")));
-		clinic.addClient(4, new Client("Kristina", new Parrot("Kesha")));
+	    clinic = new Clinic();
+		clinic.addNewClient(new Client("Dave", new Cat("Murka")));
+		clinic.addNewClient(new Client("Sasha", new Dog("Cipher")));
+		clinic.addNewClient(new Client("Tanya", new Cat("Din")));
+		clinic.addNewClient(new Client("Dasha", new Cat("Barsick")));
+		clinic.addNewClient(new Client("Kristina", new Parrot("Kesha")));
 		Menu();
 	}
 
@@ -71,11 +71,11 @@ public class ClinicRunner{
         System.out.println("Pet's name is");
         String petName = scanner.next();
         if (pet.equalsIgnoreCase("cat")){
-            clinic.addClient(clinic.getClients().length, new Client(clientName, new Cat(petName)));
+            clinic.addNewClient(new Client(clientName, new Cat(petName)));
         } else if (pet.equalsIgnoreCase("dog")) {
-            clinic.addClient(clinic.getClients().length, new Client(clientName, new Dog(petName)));
+            clinic.addNewClient(new Client(clientName, new Dog(petName)));
         } else if (pet.equalsIgnoreCase("parrot")) {
-            clinic.addClient(clinic.getClients().length, new Client(clientName, new Parrot(petName)));
+            clinic.addNewClient(new Client(clientName, new Parrot(petName)));
         } else System.out.println("Клиент не был добавлен");
     }
 
@@ -142,7 +142,7 @@ public class ClinicRunner{
     private static void setPetMenu() {
         System.out.println("Client position to set pet");
         int position = Integer.valueOf(scanner.next());
-        System.out.println(" Type of pet.   (dog/cat/parrot)");
+        System.out.println("Type of pet.   (dog/cat/parrot)");
         String petType = scanner.next();
         System.out.println("Pet name");
         String petName = scanner.next();

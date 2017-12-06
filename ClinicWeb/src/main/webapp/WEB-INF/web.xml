@@ -6,16 +6,44 @@
 
     <display-name>ClinicPet</display-name>
 
-
-
     <servlet>
-        <servlet-name>ClinicServlet</servlet-name>
-        <servlet-class>ru.ark.servlets.ClinicServlet</servlet-class>
+        <servlet-name>ShowClientsServlett</servlet-name>
+        <servlet-class>ru.ark.servlets.ShowClientsServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>ClinicServlet</servlet-name>
-        <url-pattern>/</url-pattern>
+        <servlet-name>ShowClientsServlett</servlet-name>
+        <url-pattern>/view</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>AddClientServlet</servlet-name>
+        <servlet-class>ru.ark.servlets.AddClientServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>AddClientServlet</servlet-name>
+        <url-pattern>/add</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteServlet</servlet-name>
+        <servlet-class>ru.ark.servlets.DeleteServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>DeleteServlet</servlet-name>
+        <url-pattern>/delete</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SearchServlet</servlet-name>
+        <servlet-class>ru.ark.servlets.SearchServlet</servlet-class>
+    </servlet>
+    
+    <servlet-mapping>
+        <servlet-name>SearchServlet</servlet-name>
+        <url-pattern>/search</url-pattern>
     </servlet-mapping>
 
 </web-app>

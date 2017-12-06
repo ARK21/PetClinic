@@ -1,0 +1,48 @@
+body {
+    background-color: white;
+}
+
+table {
+    border: 2px #000000 solid;
+    border-collapse: collapse;
+    margin: auto auto 0 auto;
+
+}
+
+
+tr, td {
+    border: 2px #000000 solid;
+}
+
+h1 {
+    text-align: center;
+    text-decoration: underline;
+}
+
+.main {
+    height: auto;
+    width: 500px;
+    background-color: burlywood;
+    border-radius: 10px;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+}
+
+.moveTo {
+    margin: 10px;
+}
+
+.table_header {
+    font-weight: bold;
+}
+
+.button {
+    margin: 5px;
+}
+
+
+
+

@@ -8,26 +8,24 @@
 <body>
 <div class="main">
 <form action="/search" method="post">
-    <h1>Search:</h1>
-    <table border="2">
-        <tr style="font-weight: bold">
-            <td><input type="text" name="search" placeholder="Enter client name"></td>
-            <td><input type="submit" name="searchBt" value="search"></td>
-        </tr>
-    </table>
+    <h3>Search</h3>
+            <div >
+            <input type="text" name="search" placeholder="Enter client name" class="inputForm">
+            <input type="submit" name="searchBt" value="Search" class="submit">
+            </div>
 </form>
 <c:if test="${foundUser.size() == 0}">
     <h1>Client didn't find</h1>
 </c:if>
-<c:if test="${foundUser.size() != 0}">
-    <table border="1">
-
-        <tr class="table_header" >
-            <td>ID</td>
-            <td>User Name</td>
-            <td>Pet type</td>
-            <td>Pet name</td>
-            <td>Action</td>
+<c:if test="${foundUser.size() >= 1}">
+    <table>
+        <caption>Searched users</caption>
+        <tr>
+            <th>ID</th>
+            <th>User Name</th>
+            <th>Pet type</th>
+            <th>Pet name</th>
+            <th>Action</th>
         </tr>
         <c:forEach items="${foundUser}" var="user">
             <tr>
@@ -41,7 +39,10 @@
     </table>
 
 </c:if>
-<a class="moveTo" href="view">Back to main page</a>
+    <div class="moveTo" >
+        <a href="/view">Back to the main page</a>
+    </div>
+
 </div>
 </body>
 </html>

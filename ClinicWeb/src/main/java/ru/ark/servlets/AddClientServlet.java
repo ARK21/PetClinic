@@ -15,35 +15,18 @@ import java.sql.SQLException;
 
 public class AddClientServlet extends HttpServlet {
 
-    private final UserStore STORE = UserStore.getInstance();
-
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         if (request != null) {
             String clientName = request.getParameter("clientName");
-            int petType = Integer.valueOf(request.getParameter("petType"));
+            String petType = request.getParameter("petType");
             String petName = request.getParameter("petName");
             try {
-                switch (petType) {
-                    case 1:
-                        UserStore.add(new User(UserStore.getUsers().size() + 1, clientName, new Cat(petName)));
-                        break;
-                    case 2:
-                        UserStore.add(new User(UserStore.getUsers().size() + 1, clientName, new Dog(petName)));
-                        break;
-                    case 3:
-                        UserStore.add(new User(UserStore.getUsers().size() + 1, clientName, new Parrot(petName)));
-                        break;
-                }
+                UserStore.add(new User(1, clientName, UserStore.createPet(petType, petName)));
             } catch (SQLException | ClassNotFoundException e) {
                 e.printStackTrace();
             }
            response.sendRedirect("/view");
         }
-
-    }
-
-
-    protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
 }

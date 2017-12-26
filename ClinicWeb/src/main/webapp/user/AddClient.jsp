@@ -19,9 +19,9 @@
         <div class="petNameForm">
             <label>Type:
                 <select name="petType">
-                    <option value="1">Cat</option>
-                    <option value="2">Dog</option>
-                    <option value="3">Parrot</option>
+                    <option value="Cat">Cat</option>
+                    <option value="Dog">Dog</option>
+                    <option value="Parrot">Parrot</option>
                 </select>
             </label>
             <label>Pet name:

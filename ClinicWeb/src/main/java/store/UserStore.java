@@ -85,8 +85,8 @@ public class UserStore {
         return DriverManager.getConnection("jdbc:postgresql://localhost:1121/clinic_base", "postgres", "2114");
     }
 
-    private static Pet createPet(String type, String name) {
-            Pet pet = null;
+    public  static Pet createPet(String type, String name) {
+        Pet pet = null;
         if (type.equalsIgnoreCase("Cat")) {
             pet = new Cat(name);
         } else if (type.equalsIgnoreCase("Dog")) {
@@ -94,7 +94,7 @@ public class UserStore {
         } else if (type.equalsIgnoreCase("Parrot")) {
             pet = new Parrot(name);
         }
-        return  pet;
+        return pet;
     }
 
 

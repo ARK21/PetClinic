@@ -58,6 +58,10 @@ a {
     border-radius: 8px;
 }
 
+.inputForm:focus {
+    outline: none!important;
+}
+
 .submit {
     cursor: pointer;
     border: 1px solid #cecece;
@@ -66,7 +70,10 @@ a {
     border-radius: 8px;
     padding: 6px 5px 4px 5px;
     width: 80px;
+}
 
+.submit:focus {
+    outline: none!important;
 }
 
 .clientNameForm {

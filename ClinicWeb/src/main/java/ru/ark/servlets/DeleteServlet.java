@@ -1,6 +1,7 @@
 package ru.ark.servlets;
 
-import store.UserStore;
+import store.SQLStorage;
+import store.Storage;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -11,14 +12,11 @@ import java.sql.SQLException;
 
 public class DeleteServlet extends HttpServlet {
 
+    private final Storage STORAGE = Storage.getInstance();
 
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         int id = Integer.parseInt(request.getParameter("id"));
-        try {
-            UserStore.delete(id);
-        } catch (SQLException | ClassNotFoundException e) {
-            e.printStackTrace();
-        }
+        STORAGE.delete(id);
         response.sendRedirect("/view");
 
     }

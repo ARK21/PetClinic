@@ -3,7 +3,7 @@
 <html>
 <head>
     <title>Search</title>
-    <link rel="stylesheet" href="/css/stylesheet.css">
+    <link rel="stylesheet" href="/css/stylesheet.css" type="text/css">
 </head>
 <body>
 <div class="main">
@@ -33,7 +33,10 @@
                 <td>${user.name}</td>
                 <td>${user.pet.getClass().getSimpleName()}</td>
                 <td>${user.pet.getName()}</td>
-                <td><a href="delete?id=${user.id}">To delete</a></td>
+                <td>
+                    <div><a href="delete?id=${user.id}">To delete</a></div>
+                    <div><a href="edit?id=${user.id}">To edit</a></div>
+                </td>
             </tr>
         </c:forEach>
     </table>

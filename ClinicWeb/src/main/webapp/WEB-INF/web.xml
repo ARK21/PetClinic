@@ -7,12 +7,12 @@
     <display-name>ClinicPet</display-name>
 
     <servlet>
-        <servlet-name>ShowClientsServlett</servlet-name>
+        <servlet-name>ShowClientsServlet</servlet-name>
         <servlet-class>ru.ark.servlets.ShowClientsServlet</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>ShowClientsServlett</servlet-name>
+        <servlet-name>ShowClientsServlet</servlet-name>
         <url-pattern>/view</url-pattern>
     </servlet-mapping>
 
@@ -46,4 +46,23 @@
         <url-pattern>/search</url-pattern>
     </servlet-mapping>
 
+    <servlet>
+        <servlet-name>EditServlet</servlet-name>
+        <servlet-class>ru.ark.servlets.EditServlet</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>EditServlet</servlet-name>
+        <url-pattern>/edit</url-pattern>
+    </servlet-mapping>
+
+    <servlet>
+        <servlet-name>SelectStorage</servlet-name>
+        <servlet-class>ru.ark.servlets.SelectStorage</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>SelectStorage</servlet-name>
+        <url-pattern>/</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -2,15 +2,16 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Add client</title>
+    <title>Edit client</title>
     <link rel="stylesheet" href="/css/stylesheet.css" type="text/css">
 </head>
 <body>
 <div class="main">
 
 
-    <form action="${pageContext.servletContext.contextPath}/add" method="post">
-        <h3>Add client panel</h3>
+    <form action="${pageContext.servletContext.contextPath}/edit" method="post">
+        <input type="hidden" name="id" value="${user.getId()}">
+        <h3>Edit client panel</h3>
         <div class="clientNameForm">
             <label>Client name:
                 <input type="text" name="clientName" placeholder="Enter your name" class="inputForm">
@@ -25,12 +26,12 @@
                 </select>
             </label>
             <label>Pet name:
-                <input type="text" name="petName" placeholder="Enter pet name" class="inputForm">
+                <input type="text" name="petName" placeholder="Enter new pet name" class="inputForm">
             </label>
         </div>
 
 
-        <input class="submit" type="submit" name="Add" value="Add client">
+        <input class="submit" type="submit" name="Edit" value="Edit">
 
     </form>
     <div class="moveTo" >

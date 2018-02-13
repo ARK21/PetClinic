@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD/EN"
+        "http://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="models.Pet" table="clinic">
+        <id name="id" column="user_id" type="int">
+            <generator class="identity"/>
+        </id>
+        <property name="name" type="string" column="user_name"/>
+        <property name="pet" />
+    </class>
+</hibernate-mapping>

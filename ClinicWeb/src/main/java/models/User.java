@@ -1,9 +1,7 @@
 package models;
 
-import ru.ark.Clinic.Pet;
 
 public class User {
-
 
     private int id;
     private String name;
@@ -13,6 +11,10 @@ public class User {
         this.id = id;
         this.name = name;
         this.pet = pet;
+    }
+
+    public User () {
+
     }
 
     public int getId() {
@@ -39,13 +41,5 @@ public class User {
         this.pet = pet;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id= " + id +
-                ", name='" + name + '\'' +
-                ", " + pet.getClass().getSimpleName() +
-                ", name " + pet.getName() +
-                '}';
-    }
+
 }
